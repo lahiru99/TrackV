@@ -1,9 +1,14 @@
 'use client';
 
 import React, { useRef } from 'react';
-import { motion, useMotionValue, useTransform } from 'framer-motion';
+import {
+  motion,
+  useMotionValue,
+  useTransform,
+  type HTMLMotionProps,
+} from 'framer-motion';
 
-interface HoverTiltProps extends React.HTMLAttributes<HTMLDivElement> {
+interface HoverTiltProps extends HTMLMotionProps<'div'> {
   intensity?: number; // degrees
   children: React.ReactNode;
 }
