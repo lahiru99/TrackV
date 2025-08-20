@@ -1,7 +1,15 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Play, Pause, SkipBack, SkipForward, Volume2 } from 'lucide-react';
+import {
+  Play,
+  Pause,
+  SkipBack,
+  SkipForward,
+  Volume2,
+  Disc3,
+} from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Slider } from '@/components/ui/slider';
+import { motion } from 'framer-motion';
 
 interface AudioPlayerProps {
   src: string;
@@ -70,7 +78,13 @@ export default function AudioPlayer({ src, title, artist }: AudioPlayerProps) {
   const isTrackSelected = src !== '';
 
   return (
-    <div className="bg-secondary p-6 rounded-lg shadow-md space-y-4">
+    <motion.div
+      className="bg-secondary p-6 rounded-lg shadow-md space-y-4"
+      layout
+      initial={{ opacity: 0, y: 8 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ type: 'spring', stiffness: 300, damping: 24 }}
+    >
       <div className="flex justify-between items-center">
         <div>
           <h3 className="font-semibold text-lg">{title}</h3>
@@ -104,6 +118,22 @@ export default function AudioPlayer({ src, title, artist }: AudioPlayerProps) {
         </Button>
       </div>
       <div className="space-y-2">
+        <div className="flex items-center gap-2">
+          <motion.div
+            animate={isPlaying ? { rotate: 360 } : { rotate: 0 }}
+            transition={{
+              repeat: isPlaying ? Infinity : 0,
+              duration: 6,
+              ease: 'linear',
+            }}
+            className="h-6 w-6"
+          >
+            <Disc3 className="h-6 w-6 opacity-70" />
+          </motion.div>
+          <span className="text-sm text-muted-foreground">
+            {isPlaying ? 'Playing' : 'Paused'}
+          </span>
+        </div>
         <Slider
           value={[currentTime]}
           max={duration}
@@ -117,6 +147,6 @@ export default function AudioPlayer({ src, title, artist }: AudioPlayerProps) {
         </div>
       </div>
       <audio ref={audioRef} src={src} />
-    </div>
+    </motion.div>
   );
 }

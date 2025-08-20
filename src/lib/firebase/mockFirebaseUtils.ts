@@ -38,3 +38,15 @@ export const getFileUrl = async (path: string) => {
   const storage = getMockStorage();
   return Promise.resolve(storage[path] || `https://example.com/${path}`);
 };
+
+export const deleteFile = async (path: string) => {
+  console.log(`Mocking delete file for: ${path}`);
+  const storage = getMockStorage();
+  if (storage[path]) {
+    delete storage[path];
+    setMockStorage(storage);
+    // notify listeners (TrackList listens to 'storage')
+    window.dispatchEvent(new Event('storage'));
+  }
+  return Promise.resolve();
+};
