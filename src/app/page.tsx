@@ -20,28 +20,30 @@ export default function TrackVault() {
   if (!mounted) return null;
 
   return (
-    <div className="min-h-screen bg-background text-foreground flex items-start justify-center p-4">
+    <div className="min-h-screen bg-background text-foreground flex items-center justify-center p-4">
       <div className="w-full max-w-2xl">
-        <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold flex items-center">
+        <div className="relative flex items-center justify-center mb-8">
+          <h1 className="text-3xl font-bold flex items-center text-center">
             <Music className="mr-2 h-8 w-8" />
             <GlitchText text="TrackVault" />
           </h1>
-          <Button
-            variant="outline"
-            size="icon"
-            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-          >
-            {theme === 'dark' ? (
-              <Sun className="h-[1.2rem] w-[1.2rem]" />
-            ) : (
-              <Moon className="h-[1.2rem] w-[1.2rem]" />
-            )}
-          </Button>
+          <div className="absolute right-0">
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+            >
+              {theme === 'dark' ? (
+                <Sun className="h-[1.2rem] w-[1.2rem]" />
+              ) : (
+                <Moon className="h-[1.2rem] w-[1.2rem]" />
+              )}
+            </Button>
+          </div>
         </div>
 
         <Tabs defaultValue="upload" className="w-full">
-          <TabsList className="grid w-full grid-cols-3 mb-8">
+          <TabsList className="grid w-full grid-cols-3 mb-8 justify-items-center">
             <TabsTrigger value="upload">
               <Upload className="mr-2 h-4 w-4" />
               Upload

@@ -1,62 +1,60 @@
 # TrackVault
 
-TrackVault is a web application for uploading, storing, and playing audio tracks. It's built with Next.js, React, and uses a mock Firebase storage system for demonstration purposes.
+Minimal audio library for uploading and playing tracks. Built on Next.js 14 (App Router), React 18, Tailwind CSS, and shadcn/ui. Storage is mocked (localStorage) for a frictionless demo.
 
-## Features
+## What’s new
 
-- Upload audio tracks (.mp3, .wav)
-- Organize tracks into folders (favorites, playlists, albums)
-- Play tracks with a custom audio player
-- Dark/Light theme toggle
+- Centered, minimalist layout
+- Drag‑to‑reorder tracks with subtle hover tilt (Framer Motion)
+- Animated delete with red‑hover bin
+- Simplified upload: "Add to tracks" (no folders) with success bounce
+- Audio player vinyl motif (spinning disc on play)
+- Skeleton loaders and empty states
+- Quick page curtain transition between views
+- Sliding “pill” tab highlight with smooth motion
+- Centered brand title and balanced header layout
+- Hover‑only brand glitch on the "TrackVault" title
 
-## Technologies Used
+## Tech
 
-- React with Next.js 14 App Router
-- TailwindCSS
-- shadcn/ui components
-- Mock Firebase storage (using localStorage)
-- Lucide React for icons
-- next-themes for theme management
+- Next.js 14 App Router, React 18, TypeScript
+- Tailwind CSS, shadcn/ui, Framer Motion
+- Mock Firebase utils (localStorage) for demo persistence
 
-## Getting Started
+## Getting started
 
-1. Clone the repository:
+1. Install
 
-   ```bash
-   git clone https://github.com/yourusername/trackvault.git
-   cd trackvault
-   ```
+```bash
+npm install
+```
 
-2. Install dependencies:
+2. Run
 
-   ```bash
-   npm install
-   ```
+```bash
+npm run dev
+```
 
-3. Run the development server:
+Open `http://localhost:3000`.
 
-   ```bash
-   npm run dev
-   ```
+## Deploying on Vercel
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
+This repo works out‑of‑the‑box with no required environment variables. Optional API routes for OpenAI/Anthropic/Replicate/Deepgram are included but not required.
 
-## Project Structure
+- The transcription endpoint at `src/app/api/openai/transcribe/route.ts` is disabled by default to avoid build‑time secrets. If you want it, set `OPENAI_API_KEY` and replace the stub with a proper implementation.
 
-- `/src/app`: Contains the main pages and layout
-- `/src/app/components`: React components (FileUpload, AudioPlayer, TrackList)
-- `/src/components/ui`: UI components from shadcn/ui
-- `/src/lib`: Utility functions and mock Firebase implementation
+## Project structure
 
-## Mock Firebase Storage
+- `src/app` — App Router pages and `layout.tsx`
+- `src/app/components` — App components (`FileUpload`, `AudioPlayer`, `TrackList`)
+- `src/components` — Reusable UI/FX (`HoverTilt`, `DynamicShadow`, `GlitchText`, `PageCurtain`)
+- `src/components/ui` — shadcn/ui primitives
+- `src/lib` — Helpers and mock storage
 
-This project uses a mock Firebase storage system that utilizes localStorage. Uploaded "files" will persist in the browser but won't be accessible across different devices or browsers.
+## Notes
 
-## Contributing
-
-Contributions to TrackVault are welcome. Please feel free to submit a Pull Request.
+This app uses a mock storage backend for simplicity. Uploaded files persist per‑browser and aren’t shared across devices.
 
 ## License
 
-This project is open source and available under the [MIT License](LICENSE).
-# TrackV
+MIT
